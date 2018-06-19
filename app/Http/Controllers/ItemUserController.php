@@ -12,7 +12,7 @@ class ItemUserController extends Controller
 {
     public function want()
     {
-        $title = request()->title;
+        $title = request()->book_title;
 
         $client = new \RakutenRws_Client();
         $client->setApplicationId(env('RAKUTEN_APPLICATION_ID'));
@@ -35,7 +35,7 @@ class ItemUserController extends Controller
 
     public function dont_want()
     {
-        $title = request()->title;
+        $title = request()->book_title;
 
         if (\Auth::user()->is_wanting($title)) {
             $itemId = Item::where('title', $title)->first()->id;
@@ -47,7 +47,7 @@ class ItemUserController extends Controller
     
     public function read()
     {
-        $title = request()->title;
+        $title = request()->book_title;
 
         $client = new \RakutenRws_Client();
         $client->setApplicationId(env('RAKUTEN_APPLICATION_ID'));
@@ -70,7 +70,7 @@ class ItemUserController extends Controller
 
     public function dont_read()
     {
-        $title = request()->title;
+        $title = request()->book_title;
 
         if (\Auth::user()->is_reading($title)) {
             $itemId = Item::where('title', $title)->first()->id;

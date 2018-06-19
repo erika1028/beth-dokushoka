@@ -11,12 +11,12 @@
                             @if ($item->id)
                                 <p class="item-title"><a href="{{ route('items.show', $item->id) }}">{{ $item->title }}</a></p>
                             @else
-                                <p class="item-title">{{ $item->name }}</p>
+                                <p class="item-title">{{ $item->title }}</p>
                             @endif
                             <div class="buttons text-center">
                                 @if (Auth::check())
                                     @include('items.want_button', ['item' => $item])
-                                     @include('items.read_button', ['item' => $item])
+                                    @include('items.read_button', ['item' => $item])
                                 @endif
                             </div>
                         </div>

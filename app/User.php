@@ -92,13 +92,13 @@ class User extends Authenticatable
         }
     }
 
-    public function is_reading($itemIdOrCode)
+    public function is_reading($itemId)
     {
-        if (is_numeric($itemIdOrCode)) {
-            $item_id_exists = $this->read_items()->where('item_id', $itemIdOrCode)->exists();
+        if (is_numeric($itemId)) {
+            $item_id_exists = $this->read_items()->where('item_id', $itemId)->exists();
             return $item_id_exists;
         } else {
-            $item_title_exists = $this->read_items()->where('title', $itemIdOrCode)->exists();
+            $item_title_exists = $this->read_items()->where('title', $itemId)->exists();
             return $item_title_exists;
         }
     }
