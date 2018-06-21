@@ -11,13 +11,21 @@ footer {
 /* navbar */
 .navbar {
     background-color: #fff;
+    height: 80px;
 }
 .navbar-header img {
-    margin-top: 5px;
-    height: 40px;
+    height: 80px;
+    width: auto;
 }
 
-/* cover */
+.navbar li{
+    padding-top: 20px;
+}
+
+.dropdown-menu li{
+    padding-top:0;
+}
+
 .cover {
     margin-top: -20px;
     margin-bottom: 20px;
@@ -48,33 +56,38 @@ footer {
     border-color: #ed486f;
 }
 
+.btn-primary {
+  background-color: transparent;
+  border: 2px solid #D2B48C;
+  color: #D2B48C;
+  line-height: 40px;
+}
+.btn-primary:hover {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.btn-light {
+  background-color: #D2B48C;
+  border: 2px solid #D2B48C;
+  color:#fff;
+  line-height: 40px;
+}
+
+
 /* search */
 .search {
     margin-bottom: 20px;
 }
 
-/* item */
-.item .panel-body {
-    height: 120px;
+
+.colorfilter-base {
+    background-color: black;  /* カラーフィルタ効果の色を指定 */
 }
-.item .buttons form {
-    display: inline-block;
-    margin: 0 5px;
+.card-img {
+    opacity: 0.5;    /* カラーフィルタ効果の度合いを指定 */
 }
-.item .panel-heading {
-    height: 200px;
-}
-.item .panel-heading img {
-    height: 100%;
-    max-width: 100%;
-}
-p.item-title {
-    /* Keep the number of lines in a sentence on two lines, and add "..." to the end of line. */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-}
+
+
 
 /* users */
 .user-profile .name {
@@ -107,3 +120,4 @@ p.item-title {
 .user-profile .status ul li .status-value {
     font-size: 18px;
 }
+

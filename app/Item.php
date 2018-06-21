@@ -8,6 +8,11 @@ class Item extends Model
 {
    protected $fillable = ['title', 'author','publishername','url', 'image_url'];
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class)->withPivot('type')->withTimestamps();
