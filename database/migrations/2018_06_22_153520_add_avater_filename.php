@@ -14,7 +14,7 @@ class AddAvaterFilename extends Migration
         public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar_filename', 100);
+            $table->string('avatar_filename', 100)->nullable();
         });
     }
 
