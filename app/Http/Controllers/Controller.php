@@ -14,10 +14,12 @@ class Controller extends BaseController
     public function counts($user) {
         $count_followings = $user->followings()->count();
         $count_followers = $user->followers()->count();
+        $count_items = $user->items()->count();
         $count_want = $user->want_items()->count();
         $count_read = $user->read_items()->count();
 
         return [
+            'count_items' => $count_items,
            'count_want' => $count_want,
             'count_read' => $count_read,
             'count_followings' => $count_followings,

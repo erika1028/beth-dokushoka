@@ -81,10 +81,10 @@ footer {
 
 
 .colorfilter-base {
-    background-color: black;  /* カラーフィルタ効果の色を指定 */
+    background-color: black; 
 }
 .card-img {
-    opacity: 0.5;    /* カラーフィルタ効果の度合いを指定 */
+    opacity: 0.5;   
 }
 
 
@@ -121,3 +121,10 @@ footer {
     font-size: 18px;
 }
 
+p.card-title {
+    /* Keep the number of lines in a sentence on two lines, and add "..." to the end of line. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}

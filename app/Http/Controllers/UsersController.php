@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
+
 use App\Item;
 
 class UsersController extends Controller
@@ -19,9 +20,11 @@ class UsersController extends Controller
             'users' => $users,
         ]);
     }
+    
     public function show($id)
     {
         $user = User::find($id);
+        $count_items = $user->items()->count();
         $count_want = $user->want_items()->count();
         $count_read = $user->read_items()->count();
         $count_followings = $user->followings()->count();
@@ -31,9 +34,10 @@ class UsersController extends Controller
         return view('users.show', [
             'user' => $user,
             'items' => $items,
+            'count_items' => $count_items,
             'count_want' => $count_want,
             'count_read' => $count_read,
-             'count_followings' => $count_followings,
+            'count_followings' => $count_followings,
             'count_followers' => $count_followers,
         ]);
     }
@@ -75,10 +79,12 @@ class UsersController extends Controller
     public function read_items($id)
     {
         $user = User::find($id);
+        $items = \DB::table('items')->join('item_user', 'items.id', '=', 'item_user.item_id')->select('items.*')->where('item_user.user_id', $user->id)->distinct()->paginate(20);
         $read_items = $user->read_items()->paginate(10);
 
         $data = [
             'user' => $user,
+            'items' => $items,
             'read_items' =>$read_items,
         ];
 
@@ -91,11 +97,13 @@ class UsersController extends Controller
       public function want_items($id)
     {
     
-    $user = User::find($id);
-        $want_items = $user->want_items()->paginate(10);
+         $user = User::find($id);
+         $items = \DB::table('items')->join('item_user', 'items.id', '=', 'item_user.item_id')->select('items.*')->where('item_user.user_id', $user->id)->distinct()->paginate(20);
+         $want_items = $user->want_items()->paginate(10);
 
         $data = [
             'user' => $user,
+            'items' => $items,
             'want_items' => $want_items,
         ];
 
