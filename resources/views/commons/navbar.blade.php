@@ -43,6 +43,9 @@
                                 <li>
                                     <a  class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}"　class="dropdown-item">My page</a>
                                 </li>
+                                 <li>
+                                    <a  class="dropdown-item"  href="{{ route('users.settings', Auth::user()->id) }}" class="dropdown-item">Setting</a>
+                                </li>
                                 <li  class="dropdown-divider"></li>
                                 <li>
                                     <a  class="dropdown-item" href="{{ route('logout.get') }}" class="dropdown-item">Logout</a>

@@ -14,6 +14,7 @@ class Controller extends BaseController
     public function counts($user) {
         $count_followings = $user->followings()->count();
         $count_followers = $user->followers()->count();
+        $count_reviews = $user->reviews()->count();
         $count_items = $user->items()->count();
         $count_want = $user->want_items()->count();
         $count_read = $user->read_items()->count();
@@ -24,6 +25,7 @@ class Controller extends BaseController
             'count_read' => $count_read,
             'count_followings' => $count_followings,
             'count_followers' => $count_followers,
+            'count_reviews' => $count_reviews,
         ];
     }
 }

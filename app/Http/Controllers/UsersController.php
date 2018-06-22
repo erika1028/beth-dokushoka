@@ -29,7 +29,7 @@ class UsersController extends Controller
         $count_read = $user->read_items()->count();
         $count_followings = $user->followings()->count();
         $count_followers = $user->followers()->count();
-        $items = \DB::table('items')->join('item_user', 'items.id', '=', 'item_user.item_id')->select('items.*')->where('item_user.user_id', $user->id)->distinct()->paginate(20);
+        $items = \DB::table('items')->join('item_user', 'items.id', '=', 'item_user.item_id')->select('items.*')->where('item_user.user_id', $user->id)->distinct()->paginate(10);
 
         return view('users.show', [
             'user' => $user,
@@ -111,4 +111,48 @@ class UsersController extends Controller
 
         return view('users.want', $data);
     }
+    
+    
+    
+       public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+     public function settings()
+    {
+        $user = User::find(auth()->id());
+
+        return view('users.setting', compact('user'));
+    }
+
+    
+     public function upload(Request $request)
+    {
+        $this->validate($request, [
+            'file' => [
+                'required',
+                'file',
+                'dimensions:min_width=120,min_height=120,max_width=400,max_height=400',
+            ]
+        ]);
+
+        if ($request->file('file')->isValid([])) {
+            $filename = $request->file->store('public/avatar');
+
+            $user = User::find(auth()->id());
+            $user ->avatar_filename = basename($filename);
+            $user ->save();
+
+            return redirect('/');
+            
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors;
+        }
+    }
+
+    
 }
