@@ -29,11 +29,6 @@ class User extends Authenticatable
     {
         return $this->items()->where('type', 'read')->withTimeStamps();
     }
-    
-    /* public function read_items()
-    {
-        return $this->belongsToMany(Item::class, 'item_user', 'user_id', 'item_id')->withTimestamps();
-    }*/
 
      public function items()
     {

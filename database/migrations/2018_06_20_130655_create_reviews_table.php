@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('item_id')->unsigned()->index();
-            $table->integer('point');
+            $table->integer('point')->nullable();
             $table->string('content');
             $table->timestamps();
 

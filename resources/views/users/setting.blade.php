@@ -10,12 +10,16 @@
             <img src="{{ asset('storage/avatar/' . $user->avatar_filename) }}" alt="avatar" />
         </p>
     @endif
-    {!! Form::label('file', '画像アップロード', ['class' => 'control-label']) !!}
+    {!! Form::label('', '', ['class' => 'control-label']) !!}
     {!! Form::file('file') !!}
 </div>
 
 <div class="form-group">
-    {!! Form::submit('Upload', ['class' => 'btn btn-light']) !!}
+      @if ($user->avatar_filename)
+    {!! Form::submit('Update', ['class' => 'btn btn-light btn-sm']) !!}
+    @else
+     {!! Form::submit('Upload', ['class' => 'btn btn-light btn-sm']) !!}
+    @endif
 </div>
 {!! Form::close() !!}
 

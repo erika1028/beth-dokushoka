@@ -6,7 +6,7 @@
             <div class="cover-contents">
                 <h1>素敵な本と出会う場所</h1>
                 @if (!Auth::check())
-                    <a href="{{ route('signup.get') }}" class="btn btn-success btn-lg">DokUsHoKaを始める</a>
+                    <a href="{{ route('signup.get') }}" class="btn btn-success btn-lg">Registration</a>
                 @endif
             </div>
         </div>

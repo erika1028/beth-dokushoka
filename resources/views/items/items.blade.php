@@ -1,7 +1,7 @@
 @if ($items)
     <div class="row">
         @foreach ($items as $key=>$item)
-                <div class= "items col-xl-3 col-md-4 col-sm-6">
+                <div class= "col-xl-3 col-md-4 col-6">
                     
                         <div class="card">
                             <div class="colorfilter-base">
@@ -22,12 +22,11 @@
                             </div>
                             @if(isset($item->count))
                             <div class="card-footer">
-                                <p class="text-center">{{ $key+1 }}位: {{ $item->count }} 人</p>
+                                <p class="text-center">{{ $key+1 }}位: {{ $item->count }} people</p>
                             </div>
                             @endif
                         </div>
                 </div>
         @endforeach
     </div>
-    
 @endif

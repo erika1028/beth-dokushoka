@@ -39,14 +39,20 @@ class ItemsController extends Controller
     }
       public function show($id)
     {
+      $user = \Auth::user();
       $item = Item::find($id);
       $want_users = $item->want_users;
       $read_users = $item->read_users;
+      $reviews = $user->reviews()->orderBy('created_at', 'desc')->paginate(10);
 
-      return view('items.show', [
+      $data =[
           'item' => $item,
+          'reviews' =>$reviews,
           'want_users' => $want_users,
           'read_users' => $read_users,
-      ]);
+      ];
+      
+      $data += $this->counts($user);
+      return view('items.show',$data);
     }
 }

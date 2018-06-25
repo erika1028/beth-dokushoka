@@ -48,15 +48,19 @@
                     <div class="card-header text-center">
                         Reviews
                     </div>
-                    <div class="card-body">
-                       <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">@</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="ユーザー名" aria-label="ユーザー名" aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-            </div>
+            <div class="card-body">
+                 @if (Auth::id() == $user->id)
+                  {!! Form::open(['route' => 'reviews.store']) !!}
+                      <div class="form-group">
+                          {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '2']) !!}
+                          {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
+                      </div>
+                  {!! Form::close() !!}
+            @endif
+            @if (count($reviews) > 0)
+                @include('reviews.reviews', ['reviews' => $reviews])
+            @endif
+                
             
         </div>
     </div>

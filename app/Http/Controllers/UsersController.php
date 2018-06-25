@@ -24,6 +24,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $reviews = $user->reviews()->orderBy('created_at', 'desc')->paginate(10);
         $count_items = $user->items()->count();
         $count_want = $user->want_items()->count();
         $count_read = $user->read_items()->count();
@@ -39,7 +40,11 @@ class UsersController extends Controller
             'count_read' => $count_read,
             'count_followings' => $count_followings,
             'count_followers' => $count_followers,
+            'reviews' => $reviews,
         ]);
+        
+        $data += $this->counts($user);
+
     }
      public function followings($id)
     {
@@ -133,7 +138,7 @@ class UsersController extends Controller
             'file' => [
                 'required',
                 'file',
-                'dimensions:min_width=120,min_height=120,max_width=400,max_height=400',
+                'dimensions:min_width=120,min_height=120,max_width=800,max_height=800',
             ]
         ]);
 
@@ -154,5 +159,4 @@ class UsersController extends Controller
         }
     }
 
-    
 }

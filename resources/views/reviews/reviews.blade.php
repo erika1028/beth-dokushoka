@@ -1,7 +1,6 @@
 <ul class="media-list">
 @foreach ($reviews as $review)
     <?php $user = $review->user; ?>
-    <?php $item = $review->item; ?>    
      <li class="media">
         <div class="media-left">
             <img class="media-object img-rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">

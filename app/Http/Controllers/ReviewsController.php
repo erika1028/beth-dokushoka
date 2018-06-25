@@ -6,43 +6,45 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
+use App\Item;
+
+use App\User;
+
 class ReviewsController extends Controller
 {
       public function index()
     {
-        $data = [];
-        if (\Auth::check()) {
+            $data = [];
             $user = \Auth::user();
+            $item = Item::find();
             $reviews = $user->reviews()->orderBy('created_at', 'desc')->paginate(10);
-            $items = \DB::table('items')->join('item_user', 'items.id', '=', 'item_user.item_id')->select('items.*')->where('item_user.user_id', $user->id)->distinct()->paginate(20);
 
             $data = [
                 'user' => $user,
-                'items' => $items,
+                'item' =>$item,
+                'review' =>$review,
                 'reviews' => $reviews,
             ];
             
             $data += $this->counts($user);
-            return view('users.show', $data);
-        }else {
-            return view('welcome');
-        }
+            return view('items.show', $data);
     }
     
       public function store(Request $request)
-    {
+    {  
+        $user = \Auth::user();
+        $item = Item::find();
         $this->validate($request, [
             'content' => 'required|max:191',
         ]);
 
-        $request->user()->reviews()->create([
+          $request->user()->reviews()->create([
             'content' => $request->content,
+            'item_id' => $item->id,
+            
         ]);
         
-         $request->item()->reviews()->create([
-            'content' => $request->content,
-        ]);
-
+        
         return redirect()->back();
     }
     
