@@ -79,9 +79,6 @@ class ItemUserController extends Controller
         return redirect()->back();
     }
     
-    public function post()
-    {
-       
-    }
+  
     
 }

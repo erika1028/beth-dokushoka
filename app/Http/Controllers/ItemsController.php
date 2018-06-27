@@ -43,11 +43,10 @@ class ItemsController extends Controller
       $item = Item::find($id);
       $want_users = $item->want_users;
       $read_users = $item->read_users;
-      $reviews = $user->reviews()->orderBy('created_at', 'desc')->paginate(10);
 
       $data =[
           'item' => $item,
-          'reviews' =>$reviews,
+          'user' => $user,
           'want_users' => $want_users,
           'read_users' => $read_users,
       ];

@@ -20,7 +20,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    public function reviews()
+     public function reviews()
     {
         return $this->hasMany(Review::class);
     }
@@ -39,7 +39,7 @@ class User extends Authenticatable
     {
         return $this->items()->where('type', 'want');
     }
-
+    
     public function want($itemId)
     {
         $exist = $this->is_wanting($itemId);

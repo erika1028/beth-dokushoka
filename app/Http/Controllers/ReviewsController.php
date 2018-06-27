@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
+use App\Review;
+
 use App\Item;
 
 use App\User;
 
 class ReviewsController extends Controller
 {
+
       public function index()
     {
             $data = [];
@@ -30,22 +33,18 @@ class ReviewsController extends Controller
             return view('items.show', $data);
     }
     
-      public function store(Request $request)
-    {  
-        $user = \Auth::user();
-        $item = Item::find();
-        $this->validate($request, [
-            'content' => 'required|max:191',
-        ]);
+   public function store(Request $request)
+    {
 
-          $request->user()->reviews()->create([
-            'content' => $request->content,
-            'item_id' => $item->id,
-            
+          $this->validate($request, [
+            'content' => 'required|max:20000',
+            'item_id'=> 'required',
         ]);
-        
-        
-        return redirect()->back();
+        $request->user()->reviews()->create([
+            'content' => $request->content,
+            'item_id' => $request->item_id,
+        ]);
+        return redirect(route('items.show', $request->item_id));
     }
     
       public function destroy($id)

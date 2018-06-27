@@ -20,13 +20,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('read_items', 'UsersController@read_items')->name('users.read_items');
         Route::get('settings','UsersController@settings')->name('users.settings');
     });
-    Route::resource('reviews', 'ReviewsController', ['only' => ['store', 'destroy']]);
+    
     Route::resource('items', 'ItemsController', ['only' => ['create', 'show']]);
     Route::post('want', 'ItemUserController@want')->name('item_user.want');
     Route::delete('want', 'ItemUserController@dont_want')->name('item_user.dont_want');
     Route::delete('read', 'ItemUserController@dont_read')->name('item_user.dont_read');
     Route::post('read', 'ItemUserController@read')->name('item_user.read');  
-     Route::post('upload', 'UsersController@upload')->name('users.upload');
+    Route::resource('reviews', 'ReviewsController', ['only' => ['store', 'destroy']]);
+    Route::post('upload', 'UsersController@upload')->name('users.upload');
 });
 
 Auth::routes();

@@ -15,15 +15,15 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
             $table->integer('item_id')->unsigned()->index();
+             $table->integer('user_id')->unsigned()->index();
             $table->integer('point')->nullable();
             $table->string('content');
             $table->timestamps();
-
-            // Foreign key constraint
-            $table->foreign('user_id')->references('id')->on('users');
+            
+            
             $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

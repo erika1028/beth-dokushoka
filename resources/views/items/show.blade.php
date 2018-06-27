@@ -50,13 +50,15 @@
                     </div>
             <div class="card-body">
                  @if (Auth::id() == $user->id)
-                  {!! Form::open(['route' => 'reviews.store']) !!}
+                 {{ Form::open(['route' => ['reviews.store'],  'method' => 'POST']) }}
                       <div class="form-group">
+                          {{ Form::hidden('item_id', $item->id)}}
                           {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '2']) !!}
                           {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
                       </div>
                   {!! Form::close() !!}
             @endif
+            <?php $reviews = $item->reviews(); ?>
             @if (count($reviews) > 0)
                 @include('reviews.reviews', ['reviews' => $reviews])
             @endif
