@@ -1,6 +1,7 @@
 <?php
 Route::get('/', 'WelcomeController@index');
 
+
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup','Auth\RegisterController@register')->name('signup.post');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -21,6 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('settings','UsersController@settings')->name('users.settings');
     });
     
+    Route::get('timeline','ReviewsController@timeline')->name('timeline');
     Route::resource('items', 'ItemsController', ['only' => ['create', 'show']]);
     Route::post('want', 'ItemUserController@want')->name('item_user.want');
     Route::delete('want', 'ItemUserController@dont_want')->name('item_user.dont_want');

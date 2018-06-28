@@ -43,6 +43,10 @@
                                 <li>
                                     <a  class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}"　class="dropdown-item">My page</a>
                                 </li>
+                                <li>
+                                    <a  class="dropdown-item"  href="{{ route('timeline', Auth::user()->id) }}" class="dropdown-item">
+                                      Timeline</a>
+                                </li>
                                  <li>
                                     <a  class="dropdown-item"  href="{{ route('users.settings', Auth::user()->id) }}" class="dropdown-item">
                                         <i class="fas fa-cog"></i> Setting</a>
