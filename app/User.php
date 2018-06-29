@@ -154,6 +154,7 @@ public function is_following($userId) {
     
 public function feed_reviews()
     {
+        
         $follow_user_ids = $this->followings()-> pluck('users.id')->toArray();
         $follow_user_ids[] = $this->id;
         return Review::whereIn('user_id', $follow_user_ids);

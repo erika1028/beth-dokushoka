@@ -57,7 +57,7 @@
                           {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
                       </div>
                   {!! Form::close() !!}
-            @endif
+           　　　 @endif
             <?php $reviews = $item->reviews(); ?>
             @if (count($reviews) > 0)
                 @include('reviews.reviews', ['reviews' => $reviews])

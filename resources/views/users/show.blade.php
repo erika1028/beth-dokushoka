@@ -23,7 +23,7 @@
             </ul>
     </div>
         
-        <div class="tab-content">
+        <div class="tab-content row">
             @include('items.items', ['items' => $items])
              {!! $items->render() !!}
         </div>

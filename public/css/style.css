@@ -8,6 +8,20 @@ footer {
     margin-top: 40px;
 }
 
+
+.jumbotron-extend {
+    background:url("/images/dokushoka.jpg");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height:500px;
+    text-align: center;
+    
+}
+.jumbotron-extend h1 {
+    color: white;
+}
 /* navbar */
 .navbar {
     background-color: #fff;
@@ -161,3 +175,7 @@ p.card-title {
   }
 }
 
+img.auto-img{
+    width: 100%;
+    height: auto;
+}
