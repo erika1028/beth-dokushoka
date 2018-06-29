@@ -28,8 +28,5 @@ class Item extends Model
         return $this->users()->where('type', 'read');
     }
     
-    public function review_item()
-    {
-        $items = \DB::table('items')->join('items', 'reviews.item_id', '=', 'items.id')->select('items.*', \DB::raw('COUNT(*) as count'))->groupBy('items.id', 'items.code', 'items.name', 'items.url', 'items.image_url','items.created_at', 'items.updated_at')->orderBy('count', 'DESC')->take(10)->get();
-    }
+  
 }

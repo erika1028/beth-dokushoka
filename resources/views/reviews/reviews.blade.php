@@ -1,5 +1,6 @@
 
 @foreach ($reviews as $review)
+<?php $user = $review->user; ?>
      <div class="my-3">
         <div class="row">
             <div class="col-md-1 col-2">
@@ -14,7 +15,7 @@
             <div class="col-md-8 col-8">
                 <div class="media-body">
                     <div>
-                        {!! link_to_route('users.show', $user->name, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $review->created_at }}</span>
+                        {!! link_to_route('users.show', $user->name, ['id' => $review->id]) !!} <span class="text-muted">posted at {{ $review->created_at }}</span>
                     </div>
                     
                     <div>
@@ -31,7 +32,15 @@
             </div>
             <div class="col-md-3 col-2 p-0 pr-2">
             @if (Request::route()->getName() == "timeline")
-                <img src="{{ $review->item->image_url }}" class="auto-img"></img>
+            <div class="card">
+                <div class="colorfilter-base">
+                        <img class="card-img" src="{{ $review->item->image_url }}" alt="" class="colorfilter-image">
+                </div>
+                <div class="card-img-overlay text-center">
+                        <p class="card-title font-weight-bold"><a class="text-white" href="{{ route('items.show', $review->item->id) }}">{{ $review->item->title }}</a></p>
+
+                </div>
+            </div>
             @endif
             </div>
         </div>

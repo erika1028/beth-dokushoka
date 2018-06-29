@@ -15,23 +15,7 @@ use App\User;
 class ReviewsController extends Controller
 {
 
-      public function index()
-    {
-            $data = [];
-            $user = \Auth::user();
-            $item = Item::find();
-            $reviews = $user->reviews()->orderBy('created_at', 'desc')->paginate(10);
-
-            $data = [
-                'user' => $user,
-                'item' =>$item,
-                'review' =>$review,
-                'reviews' => $reviews,
-            ];
-            
-            $data += $this->counts($user);
-            return view('items.show', $data);
-    }
+     
     
    public function store(Request $request)
     {
@@ -61,14 +45,14 @@ class ReviewsController extends Controller
      public function timeline()
     {
         $data = [];
-        if (\Auth::check()) {
+        
             $user = \Auth::user();
             $reviews = $user->feed_reviews()->orderBy('created_at', 'desc')->paginate(10);
             $data = [
                 'user' => $user,
                 'reviews' => $reviews,
             ];
-        }
+        
         return view('timeline', $data);
     }
     
